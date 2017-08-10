@@ -119,3 +119,29 @@ kubebot
 Now, start asking the bot to run those [kubectl](http://kubernetes.io/docs/user-guide/kubectl/kubectl/) commands for you.
 
 ![kubebot](kubebot.png "kubebot")
+
+gist tips
+```
+gem install gist
+gist -f deploy.yaml kubebot-deployment.yaml
+```
+Output
+```
+https://gist.github.com/ebd3dc825370c99cd51ffa9dccfd619d
+
+```
+Now you need to change the url to be a raw file like this
+```
+For example:
+From this 
+https://gist.github.com/ebd3dc825370c99cd51ffa9dccfd619d
+
+To
+#https://gist.githubusercontent.com/anonymous/fbf4743e3f1a6b6d4654dc7802cbe21c/raw/
+
+Using:
+----------
+gist -f deploy.yaml kubebot-deployment.yaml | sed -e 's/gist.github.com/gist.githubusercontent.com\/anonymous/' | awk '{ print ("/raw"})
+
+```
+
