@@ -1,6 +1,6 @@
 # Kubebot
 
-Kubebot is a Kubernetes chatbot for Slack. 
+Kubebot is a Kubernetes chatbot for Slack.
 
 This project is in active development and it's __not ready__ for production yet.
 
@@ -24,6 +24,8 @@ First, create a Kubernetes [Secret](http://kubernetes.io/docs/user-guide/secrets
 ```
 kubectl create secret generic kubebot --from-literal=token=<your_token_here> --from-literal=channel=<your_channel_id_here>
 ```
+
+kubectl create secret generic kubebot --from-literal=token=xoxb-223143936532-tx8fvGEioiAwxXvdyOsQMdO3 --from-literal=channel=C5TBPNPNX
 
 ### Create a kubebot Deployment
 
@@ -51,18 +53,18 @@ spec:
         # Create a secret with your slack bot token and reference it here
         - name: KUBEBOT_SLACK_TOKEN
           valueFrom:
-            secretKeyRef: 
+            secretKeyRef:
               name: kubebot
-              key: token 
+              key: token
         # Create a secret with your slack bot channel id and reference it here
         - name: KUBEBOT_SLACK_CHANNELS_IDS
           valueFrom:
-            secretKeyRef: 
-              name: kubebot 
+            secretKeyRef:
+              name: kubebot
               key: channel
         # Alternatively, use this instead if you don't need to put channel ids in a secret; use a space as a separator
         # - name: KUBEBOT_SLACK_CHANNELS_IDS
-        #   value: "1234 4321" 
+        #   value: "1234 4321"
         # Specify slack admins that kubebot should listen to; use a space as a separator
         - name: KUBEBOT_SLACK_ADMINS_NICKNAMES
           value: "user1 user2"
@@ -94,10 +96,10 @@ Then set up the following environment variables:
 
 ```
 # use the token you generated in the setup
-KUBEBOT_SLACK_TOKEN="replacewithyourtoken" 
+KUBEBOT_SLACK_TOKEN="replacewithyourtoken"
 
 # use as many channels ids you want; use a space as a separator
-KUBEBOT_SLACK_CHANNELS_IDS="1234 4321" 
+KUBEBOT_SLACK_CHANNELS_IDS="1234 4321"
 
 # use as many admin nicknames as you want; use a space as separator
 KUBEBOT_SLACK_ADMINS_NICKNAMES="nickname1 nickname2" 
@@ -117,5 +119,3 @@ kubebot
 Now, start asking the bot to run those [kubectl](http://kubernetes.io/docs/user-guide/kubectl/kubectl/) commands for you.
 
 ![kubebot](kubebot.png "kubebot")
-
-

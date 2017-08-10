@@ -1,0 +1,6 @@
+```
+for po in (kubectl get pods | tail -n 3 | awk '{print (}')
+          kubectl describe pods $po
+            end
+            )
+```
